@@ -255,30 +255,48 @@ function postData(form) {
 
         form.insertAdjacentElement('afterend', statusMessage);
 
-        const request = new XMLHttpRequest();
-        request.open('POST',"server.php");
-        //request.setRequestHeader('Content-Type', 'multipart/form-data');
-        request.setRequestHeader('Content-Type', 'application/json');
         const formData = new FormData(form);
-        
+
         const object = {};
         formData.forEach((value, key) => {
             object[key] = value;
         });
+
+        fetch('server.php',{
+            method: "POST",           
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(object)
+        })
+        .then(data => data.text())
+        .then(data => {
+            console.log(data);
+            showThanksModal(message.success);
+            
+            statusMessage.remove();
+        })
+        .catch(() => {
+            showThanksModal(message.failure);
+        })
+        .finally(() => {
+            form.reset();
+        });
+
+
+
         
 
-        request.send(JSON.stringify(object));
-
-        request.addEventListener('load', () => {
-            if(request.status === 200) {
-                console.log(request.response);
-                showThanksModal(message.success);
-                form.reset();
-                statusMessage.remove();
-            } else {
-                showThanksModal(message.failure);
-            }
-        });
+        // request.addEventListener('load', () => {
+        //     if(request.status === 200) {
+        //         console.log(request.response);
+        //         showThanksModal(message.success);
+        //         form.reset();
+        //         statusMessage.remove();
+        //     } else {
+        //         showThanksModal(message.failure);
+        //     }
+        // });
     });
 } 
 
@@ -309,6 +327,28 @@ function showThanksModal(message) {
 
 
 
+/*
+let data = fetch('https://gorest.co.in/public/v2/users', {
+        method: 'GET',           
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+})
+.then(
+    response => response.json()
+)
+.then(response => console.log(response));
+
+console.log(data);
+*/
+
+
+
+
 
 });
+
+
+
 
