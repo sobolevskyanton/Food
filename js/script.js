@@ -283,10 +283,6 @@ function postData(form) {
             form.reset();
         });
 
-
-
-        
-
         // request.addEventListener('load', () => {
         //     if(request.status === 200) {
         //         console.log(request.response);
@@ -324,24 +320,6 @@ function showThanksModal(message) {
     }, 4000);
 
 }
-
-
-
-/*
-let data = fetch('https://gorest.co.in/public/v2/users', {
-        method: 'GET',           
-        headers: {
-            'Content-Type': 'application/json'
-        },
-
-})
-.then(
-    response => response.json()
-)
-.then(response => console.log(response));
-
-console.log(data);
-*/
 
 
 
