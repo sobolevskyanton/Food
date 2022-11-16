@@ -1,7 +1,6 @@
-function slider () {
+function slider ({container, slide, nextArrow, prevArrow, totalCounter, currentCounter,wrapper, field}) {
     
     // Slider
-
     // Получить элементы, с которыми будем работать
     // Определить индекс/параметр, который определяет порядковый номер слайдера 1-4
     // Написать функцию для показа слайдов - 2 функции: показ одной картинки и скрытие всех остальных. 
@@ -9,14 +8,14 @@ function slider () {
     // Навесить обработчики событий на стрелочки
     // дефолт - выставить текущее значение - 1, согласно этому значению, показать 1 слайдер и скрыть все остальные
 
-    const prev = document.querySelector('.offer__slider-prev'),
-    next = document.querySelector('.offer__slider-next'),
-    slides = document.querySelectorAll('.offer__slide'),
-    slider = document.querySelector('.offer__slider'),
-    total = document.querySelector('#total'),
-    current = document.querySelector('#current'),
-    slidesWrapper = document.querySelector('.offer__slider-wrapper'),
-    slidesField = document.querySelector('.offer__slider-inner'),
+    const prev = document.querySelector(prevArrow),
+    next = document.querySelector(nextArrow),
+    slides = document.querySelectorAll(slide),
+    slider = document.querySelector(container),
+    total = document.querySelector(totalCounter),
+    current = document.querySelector(currentCounter),
+    slidesWrapper = document.querySelector(wrapper),
+    slidesField = document.querySelector(field),
     width = window.getComputedStyle(slidesWrapper).width;
 
     let slideIndex = 1;
@@ -213,4 +212,4 @@ function slider () {
     });
 }
 
-module.exports = slider;
+export default slider;
